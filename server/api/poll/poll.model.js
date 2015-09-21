@@ -5,7 +5,14 @@ var mongoose = require('mongoose'),
 
 var PollSchema = new Schema({
   title: String,
-  options: [String]
+  options: [String],
+  author: String,
+  votes: [Number],
+  users_voted: [String],
+	 date_created: {
+    type: Date,
+    default: Date.now
+  }  
 });
 
 module.exports = mongoose.model('Poll', PollSchema);

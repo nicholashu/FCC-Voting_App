@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('pollApp')
-  .controller('DashboardCtrl', function ($scope, $http, socket) {
+  .controller('DashboardCtrl', function ($scope, $http, socket, Auth) {
+    $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.poll = {
       title: '',
       options: ['', '']
