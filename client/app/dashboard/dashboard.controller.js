@@ -3,16 +3,25 @@
 angular.module('pollApp')
   .controller('DashboardCtrl', function ($scope, $http, socket, Auth) {
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.poll = {
+      author: $scope.getCurrentUser().name,
       title: '',
       options: ['', '']
     };
+    $scope.myPolls = [{
+      options: ['label1', 'label2'],
+    }];
+
+    getPolls();
 
 
-    $http.get('/api/polls').success(function(poll) {
-      $scope.Polls = poll;
-      socket.syncUpdates('poll', $scope.Polls);
-    });
+    function getPolls() {
+      $http.get('/api/polls/user/' + $scope.getCurrentUser().name).success(function(myPolls) {
+        $scope.myPolls = myPolls;
+        socket.syncUpdates('poll', $scope.myPolls);
+      });
+    }
 
     $scope.addThing = function() {
       if($scope.newThing === '') {

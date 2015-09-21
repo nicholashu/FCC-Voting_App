@@ -11,6 +11,17 @@ exports.index = function(req, res) {
   });
 };
 
+// Get polls by username
+exports.find = function(req, res) {
+  Poll.find({
+    author: req.params.name
+  }, function(err, polls) {
+    if (err) {
+      return handleError(res, err);
+    }
+    return res.json(polls);
+  });
+};
 // Get a single poll
 exports.show = function(req, res) {
   Poll.findById(req.params.id, function (err, poll) {
