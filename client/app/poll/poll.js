@@ -3,7 +3,7 @@
 angular.module('pollApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/poll/:id', {
+      .when('/polls/:id', {
         templateUrl: 'app/poll/poll.html',
         controller: 'PollCtrl'
       });

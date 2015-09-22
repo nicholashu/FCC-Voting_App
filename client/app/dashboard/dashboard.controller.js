@@ -26,7 +26,7 @@ angular.module('pollApp')
     }
 
     $scope.handleClick = function(poll) {
-      $window.location.href = '/poll/' + poll._id;
+      $window.location.href = '/polls/' + poll._id;
     };
 
     $scope.addThing = function() {

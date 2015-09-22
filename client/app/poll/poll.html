@@ -7,9 +7,9 @@
 </header> -->
 <div class="row text-center">
     <div class="col-md-8 col-md-offset-2">
-        <h2 class="poll-title">{{ poll.name }}</h2>
+        <h2 class="poll-title">{{ poll.title }}</h2>
         
-        
+        {{poll.options}}
         <h5 class="text-center">Created by: {{ poll.author }}, {{ poll.date_created | date }} – <a href="{{ '/poll/' + poll._id }}">Permalink</a></h5>
         <a href="/dashboard" class="btn btn-success btn-lg">Create a new poll</a>
     </div>
