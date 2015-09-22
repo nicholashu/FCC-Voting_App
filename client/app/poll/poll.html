@@ -1,0 +1,16 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- <header class="hero-unit" id="banner">
+    <div class="container">
+        <h1 ng-show="poll._id">{{ poll.author }}'s Poll</h1>
+        
+    </div>
+</header> -->
+<div class="row text-center">
+    <div class="col-md-8 col-md-offset-2">
+        <h2 class="poll-title">{{ poll.name }}</h2>
+        
+        
+        <h5 class="text-center">Created by: {{ poll.author }}, {{ poll.date_created | date }} – <a href="{{ '/poll/' + poll._id }}">Permalink</a></h5>
+        <a href="/dashboard" class="btn btn-success btn-lg">Create a new poll</a>
+    </div>
+</div>

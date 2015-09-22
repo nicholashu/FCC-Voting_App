@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pollApp')
-  .controller('DashboardCtrl', function ($scope, $http, socket, Auth) {
+  .controller('DashboardCtrl', function ($scope, $http, $window, socket, Auth) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.poll = {
@@ -9,19 +9,25 @@ angular.module('pollApp')
       title: '',
       options: ['', '']
     };
-    $scope.myPolls = [{
+     $scope.myPolls = [{
+      title:"",
       options: ['label1', 'label2'],
+      votes: [0, 1]
     }];
 
-    getPolls();
+    getPolls()
 
 
     function getPolls() {
       $http.get('/api/polls/user/' + $scope.getCurrentUser().name).success(function(myPolls) {
         $scope.myPolls = myPolls;
-        socket.syncUpdates('poll', $scope.myPolls);
+        socket.syncUpdates('myPolls', $scope.myPolls);
       });
     }
+
+    $scope.handleClick = function(poll) {
+      $window.location.href = '/poll/' + poll._id;
+    };
 
     $scope.addThing = function() {
       if($scope.newThing === '') {
