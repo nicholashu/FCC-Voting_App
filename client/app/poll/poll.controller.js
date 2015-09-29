@@ -7,6 +7,7 @@ angular.module('pollApp')
     $scope.poll = {
     	votes: [0, 1],
     };
+    $scope.voteChoice = "",
     $scope.website = "http://website.com/poll/";
 
     $http.get('/api/polls/' + pollId).success(function(poll) {
@@ -16,13 +17,17 @@ angular.module('pollApp')
     });
 
      $scope.addVote = function(vote){
-      //var optionIndex = poll.options.indexOf(vote); 
-      // $http.post('/api/polls' + $scope.poll.id).
-     //  then(function(response) {
-      //  $scope.poll.votes.push(response.data);
- // };
-      
 
+      if($scope.newThing === '') {
+        return;
+      }
+      var voteIndex = $scope.poll.options.indexOf(vote);
+      $http.patch('/api/polls/vote/' + pollId + "/" + voteIndex).
+       then(function(response) {
+        console.log("patched")
+        $scope.poll.votes[voteIndex] = response.data.votes[voteIndex];
+        $scope.poll.users_voted = response.data.users_voted;
+      });
       };
   });
    

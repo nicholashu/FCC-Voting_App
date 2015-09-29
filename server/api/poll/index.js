@@ -12,6 +12,7 @@ router.post('/', controller.create);
 router.get('/user/:name', controller.find);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
+router.patch('/vote/:id/:option',auth.isAuthenticated(), controller.addVote);
 router.delete('/:id', controller.destroy);
 
 module.exports = router;
