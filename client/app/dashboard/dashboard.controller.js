@@ -7,8 +7,9 @@ angular.module('pollApp')
     $scope.poll = {
       author: $scope.getCurrentUser().name,
       title: '',
-      options: ['', '']
-    };
+      options: ['', ''],
+      votes: [0,0],
+      }
     $scope.website = "http://website.com/poll/"
      $scope.myPolls = [{
       title:"",
@@ -17,7 +18,11 @@ angular.module('pollApp')
     }];
 
     getPolls()
-
+    function blankVotes(){
+      for(var i=0; i < $scope.poll.options.length; i++){
+        $scope.poll.votes.push(0);
+      }
+    };
 
     function getPolls() {
       $http.get('/api/polls/user/' + $scope.getCurrentUser().name).success(function(myPolls) {
@@ -54,6 +59,7 @@ angular.module('pollApp')
 
     $scope.addOption = function() {
       $scope.poll.options.push('');
+      $scope.poll.votes.push(0);
     };
 
 

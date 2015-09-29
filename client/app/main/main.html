@@ -13,7 +13,7 @@
       <h1 class="page-header">Current Polls:</h1>
       <ul class="nav nav-tabs nav-stacked col-md-offset-4 col-md-4" ng-repeat="poll in Polls">
       <a ng-click="handleClick(poll)" style="cursor: pointer;" ><li>{{poll.title}}</li></a>
-      <canvas height="50" width="50" id="{{ poll._id }}" class="chart chart-pie" chart-data="poll.votes" chart-labels="poll.options" legend="true"></canvas>
+      <canvas height="50" width="50" id="{{ poll._id }}" class="chart chart-pie" chart-data="poll.votes" chart-labels="poll.options" chart-legend="true"></canvas>
       </ul>
     </div>
   </div>
