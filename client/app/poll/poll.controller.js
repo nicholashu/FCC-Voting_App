@@ -7,6 +7,7 @@ angular.module('pollApp')
     $scope.poll = {
     	votes: [0, 1],
     };
+    $scope.getCurrentUser = Auth.getCurrentUser();
     $scope.voteChoice = "",
     $scope.website = "http://website.com/poll/";
 
@@ -18,7 +19,8 @@ angular.module('pollApp')
 
      $scope.addVote = function(vote){
 
-      if($scope.newThing === '') {
+      if($scope.poll.users_voted.indexOf($scope.getCurrentUser.name) != -1) {
+        console.log("already voted!");
         return;
       }
       var voteIndex = $scope.poll.options.indexOf(vote);
