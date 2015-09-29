@@ -9,8 +9,7 @@
 <div class="row text-center">
     <div class="col-md-8 col-md-offset-2">
         <h2 class="poll-title">{{ poll.title }}</h2>
-<canvas id="{{ poll._id }}" class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
-        {{poll.options}}
+<canvas id="{{ poll._id }}" class="chart chart-pie" chart-data="poll.votes" chart-labels="poll.options" legend="true"></canvas>
         <h5 class="text-center">Created by: {{ poll.author }}, {{ poll.date_created | date }}<br> <a href="{{ '/poll/' + poll._id }}">{{website + poll._id}}</a></h5>
       <!--  <a href="/dashboard" class="btn btn-success btn-lg" ng-show="isLoggedIn()">Create a new poll</a> -->
     </div>

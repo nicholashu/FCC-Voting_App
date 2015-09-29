@@ -7,6 +7,7 @@ angular.module('pollApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
+  'chart.js'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
