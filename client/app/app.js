@@ -6,7 +6,7 @@ angular.module('pollApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Poll = require('../api/poll/poll.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -27,6 +28,31 @@ Thing.find({}).remove(function() {
   },{
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
+  });
+});
+
+Poll.find({}).remove(function() {
+  Poll.create({
+    title : 'Favourite Soda?',
+    options : ["Pepsi","Coca-Cola","Fanta"],
+    author:"Admin",
+    date_created:"2015-09-21T09:29:22.070Z",
+    users_voted:["Test User"],
+    votes:[0,1]
+  }, {
+    title : 'Favourite Food?',
+    options : ["Pizza","Pasta","Hamburgers"],
+    date_created:"2015-08-21T09:29:22.070Z",
+    author:"Admin",
+    users_voted:["Test User", "Admin"],
+    votes:[0,2]
+  }, {
+  author:"Test User",
+  title:"Favourite Color?",
+  date_created:"2015-09-21T09:46:39.006Z",
+  users_voted:[],
+  votes:[],
+  options:["Red","Green"]
   });
 });
 

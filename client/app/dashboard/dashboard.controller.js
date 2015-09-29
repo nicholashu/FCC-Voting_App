@@ -9,6 +9,7 @@ angular.module('pollApp')
       title: '',
       options: ['', '']
     };
+    $scope.website = "http://website.com/poll/"
      $scope.myPolls = [{
       title:"",
       options: ['label1', 'label2'],
@@ -54,6 +55,8 @@ angular.module('pollApp')
     $scope.addOption = function() {
       $scope.poll.options.push('');
     };
+
+
 
      $scope.getPlaceholder = function(index) {
       switch (index) {
