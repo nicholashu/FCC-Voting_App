@@ -1,0 +1,14 @@
+.btn-success,.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-succes {
+    color: #fff;
+    background-color: #6C7A89;
+    border:0px;
+    border-color: #6C7A89;
+  }
+
+.polllist {
+	list-style: none;
+	color: #34495E;
+}
+.polllist a{
+	color: #34495E;
+};

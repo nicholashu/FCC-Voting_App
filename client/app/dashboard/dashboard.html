@@ -6,42 +6,51 @@
     <p class="lead"></p>
     <i class="fa fa-bar-chart fa-5x"></i>
   </div>
+  <br>
+  <button ng-click="setTab(1)" class="btn btn-success btn-lg">New Poll</button>
+        <button ng-click="setTab(2)" class="btn btn-primary btn-lg">My Polls</button>
 </header>
-
-<div class="container">
+<br>
+<div class="container" ng-show="isTab(2)">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in myPolls">
-        <a ng-click="handleClick(poll)" style="cursor: pointer;" ><li>{{poll.title}}</li></a><button type="button" class="close" ng-click="deleteThing(poll)">&times;</button>
-        <li>{{poll.options}}</li>
+      <ul class="polllist col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in myPolls">
+        <h5><li style="cursor: pointer;"><a ng-click="handleClick(poll)">{{poll.title}}</a><button type="button" class="close" ng-click="deleteThing(poll)">&times;</button></li></h5>
       </ul>
     </div>
   </div>
 <br>
-  <form class="poll-form" name="pollForm" role="form" ng-submit="addThing()" novalidate>
-    <p class="form-group">
-    	<label for="title">Name your Poll</label>
+</div>
+<br>
+<div class="container" ng-show="isTab(1)">
+  <div class="row">
+  <div class="col-lg-12">
+    <form class="poll-form" name="pollForm" role="form" ng-submit="addThing()" novalidate>
+      <p class="form-group">
+      <label for="title">Name your Poll</label>
       <input ng-model="poll.title" type="text" class="form-control" placeholder="Favourite Soda?" required>
-    </p>
-    <p class="form-group">
-		<label>Options</label>
-		<div ng-repeat="option in poll.options track by $index" class="input-group">
+      </p>
+      <p class="form-group">
+      <label>Options</label>
+      <div ng-repeat="option in poll.options track by $index" class="input-group">
       <input ng-model="poll.options[$index]" type="text" class="form-control" placeholder="{{getPlaceholder($index)}}" required>
       <span class="input-group-btn">
-        <button ng-click="deleteOption($index)" class="btn btn-danger" type="button">
-            <i class="fa fa-close"></i>
-        </button>
-    </span>
-   </div>
-    </p>
-    <div class="form-group">
-            <button ng-click="addOption()" type="button" class="btn btn-default form-control">More Options</button>
-        </div>
-    <div class="form-group">
+      <button ng-click="deleteOption($index)" class="btn btn-danger" type="button">
+      <i class="fa fa-close"></i>
+      </button>
+      </span>
+      </div>
+      </p>
+      <div class="form-group">
+        <button ng-click="addOption()" type="button" class="btn btn-default form-control">More Options</button>
+      </div>
+      <div class="form-group">
         <button type="submit" class="btn btn-success form-control">Submit</button>
+      </div>
+    </form>
     </div>
-  </form>
+  </div>
+  <br>
 </div>
 
 <footer class="footer">

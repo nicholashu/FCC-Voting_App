@@ -10,6 +10,7 @@ angular.module('pollApp')
       options: ['', ''],
       votes: [0,0],
       }
+    $scope.tab = 1;
     $scope.website = "http://website.com/poll/"
      $scope.myPolls = [{
       title:"",
@@ -33,6 +34,14 @@ angular.module('pollApp')
 
     $scope.handleClick = function(poll) {
       $window.location.href = '/polls/' + poll._id;
+    };
+
+    $scope.setTab = function(tab) {
+      $scope.tab = tab;
+    };
+
+    $scope.isTab = function(tab) {
+      return tab === $scope.tab;
     };
 
     $scope.addThing = function() {

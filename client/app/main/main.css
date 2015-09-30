@@ -19,7 +19,7 @@
     color: #F5F5F5;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+    background: #95A5A6;
 }
 
 .footer {
@@ -31,4 +31,11 @@
 
 .navbar-text {
     margin-left: 15px;
+}
+
+.main-title{
+    font-size: 1.2em;
+    color:#34495E;
+    text-align: center;
+    line-height: 1.5em;
 }
