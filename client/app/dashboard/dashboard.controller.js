@@ -9,21 +9,17 @@ angular.module('pollApp')
       title: '',
       options: ['', ''],
       votes: [0,0],
-      }
+      };
     $scope.tab = 1;
-    $scope.website = "http://website.com/poll/"
+    $scope.website = 'http://website.com/poll/';
      $scope.myPolls = [{
-      title:"",
+      title:'',
       options: ['label1', 'label2'],
       votes: [0, 1]
     }];
 
-    getPolls()
-    function blankVotes(){
-      for(var i=0; i < $scope.poll.options.length; i++){
-        $scope.poll.votes.push(0);
-      }
-    }; 
+ 
+
 
     function getPolls() {
       $http.get('/api/polls/user/' + $scope.getCurrentUser().name).success(function(myPolls) {
@@ -31,7 +27,7 @@ angular.module('pollApp')
         socket.syncUpdates('myPolls', $scope.myPolls);
       });
     }
-
+   getPolls();
      function clearPoll() {
       $scope.poll = {
         author: $scope.getCurrentUser().name,

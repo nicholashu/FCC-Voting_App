@@ -6,7 +6,7 @@ angular.module('pollApp')
       title: '',
       options: ['', '']
     };
-$scope.website = "http://website.com/poll/"
+$scope.website = 'http://website.com/poll/';
     $http.get('/api/polls').success(function(poll) {
       $scope.Polls = poll;
       socket.syncUpdates('poll', $scope.Polls);

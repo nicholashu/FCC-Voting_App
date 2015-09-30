@@ -9,8 +9,7 @@ angular.module('pollApp')
     	votes: [0, 1],
     };
     $scope.getCurrentUser = Auth.getCurrentUser();
-    $scope.voteChoice = "",
-    $scope.website = "http://website.com/poll/";
+    $scope.voteChoice = '';
 
     $http.get('/api/polls/' + pollId).success(function(poll) {
       $scope.poll = poll;
@@ -18,23 +17,16 @@ angular.module('pollApp')
       console.log(err);
     });
 
-     $scope.deleteThing = function(thing) {
-      $http.delete('/api/polls/' + thing._id);
-      getPolls();
-      toastr.error('Poll Deleted');
-      $window.location.href = '/dashboard/';
-    };
-
      $scope.addVote = function(vote){
 
-      if($scope.poll.users_voted.indexOf($scope.getCurrentUser.name) != -1) {
-        console.log("already voted!");
+      if($scope.poll.users_voted.indexOf($scope.getCurrentUser.name) !== -1) {
+        console.log('already voted!');
         toastr.clear();
          toastr.warning('Sorry, you can only vote once...');
         return;
       }
       var voteIndex = $scope.poll.options.indexOf(vote);
-      $http.patch('/api/polls/vote/' + pollId + "/" + voteIndex).
+      $http.patch('/api/polls/vote/' + pollId + '/' + voteIndex).
        then(function(response) {
         $scope.poll.votes[voteIndex] = response.data.votes[voteIndex];
         $scope.poll.users_voted = response.data.users_voted;
