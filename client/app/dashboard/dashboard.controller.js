@@ -23,13 +23,22 @@ angular.module('pollApp')
       for(var i=0; i < $scope.poll.options.length; i++){
         $scope.poll.votes.push(0);
       }
-    };
+    }; 
 
     function getPolls() {
       $http.get('/api/polls/user/' + $scope.getCurrentUser().name).success(function(myPolls) {
         $scope.myPolls = myPolls;
         socket.syncUpdates('myPolls', $scope.myPolls);
       });
+    }
+
+     function clearPoll() {
+      $scope.poll = {
+        author: $scope.getCurrentUser().name,
+        name: '',
+        options: ['', ''],
+        votes: [0,0],
+      };
     }
 
     $scope.handleClick = function(poll) {
@@ -51,26 +60,23 @@ angular.module('pollApp')
       $http.post('/api/polls', $scope.poll).
        then(function(response) {
         $scope.poll.push(response.data);
-        clearPoll();
-        $window.location.href = '/polls/' + poll._id;
       });
+        clearPoll();
+        getPolls();
+        $scope.tab = 2;
     };
 
-    function clearPoll() {
-      $scope.poll = {
-        name: '',
-        options: ['', '']
-      };
-    }
 
     $scope.deleteThing = function(thing) {
       $http.delete('/api/polls/' + thing._id);
+      getPolls();
     };
 
     $scope.addOption = function() {
       $scope.poll.options.push('');
       $scope.poll.votes.push(0);
     };
+
 
 
 
@@ -86,6 +92,6 @@ angular.module('pollApp')
     };
 
     $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('poll');
     });
   });
