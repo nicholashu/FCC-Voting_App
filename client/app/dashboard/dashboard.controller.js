@@ -64,12 +64,14 @@ angular.module('pollApp')
         clearPoll();
         getPolls();
         $scope.tab = 2;
+        toastr.success('New poll added :)');
     };
 
 
     $scope.deleteThing = function(thing) {
       $http.delete('/api/polls/' + thing._id);
       getPolls();
+      toastr.error('Poll Deleted');
     };
 
     $scope.addOption = function() {

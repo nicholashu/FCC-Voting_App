@@ -14,7 +14,8 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.6.0",
-    "angular-chart.js": "~0.8.4"
+    "angular-chart.js": "~0.8.4",
+    "toastr": "~2.1.2"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

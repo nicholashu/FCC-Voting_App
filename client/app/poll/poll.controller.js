@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('pollApp')
-  .controller('PollCtrl', function($scope, $routeParams, $http, Auth) {
+  .controller('PollCtrl', function($scope, $routeParams, $http,$location, Auth) {
     var pollId = $routeParams.id;
+    $scope.currentAddress = $location.absUrl();
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.poll = {
     	votes: [0, 1],
@@ -17,18 +18,28 @@ angular.module('pollApp')
       console.log(err);
     });
 
+     $scope.deleteThing = function(thing) {
+      $http.delete('/api/polls/' + thing._id);
+      getPolls();
+      toastr.error('Poll Deleted');
+      $window.location.href = '/dashboard/';
+    };
+
      $scope.addVote = function(vote){
 
       if($scope.poll.users_voted.indexOf($scope.getCurrentUser.name) != -1) {
         console.log("already voted!");
+        toastr.clear();
+         toastr.warning('Sorry, you can only vote once...');
         return;
       }
       var voteIndex = $scope.poll.options.indexOf(vote);
       $http.patch('/api/polls/vote/' + pollId + "/" + voteIndex).
        then(function(response) {
-        console.log("patched")
         $scope.poll.votes[voteIndex] = response.data.votes[voteIndex];
         $scope.poll.users_voted = response.data.users_voted;
+        toastr.clear();
+        toastr.success('Thanks for the vote! :)');
       });
       };
   });
