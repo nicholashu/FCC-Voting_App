@@ -52,6 +52,7 @@ angular.module('pollApp')
        then(function(response) {
         $scope.poll.push(response.data);
         clearPoll();
+        $window.location.href = '/polls/' + poll._id;
       });
     };
 
